@@ -1,0 +1,97 @@
+{
+  "rooms": [
+    {
+      "lights": [
+        {
+          "id": "1",
+          "isOn": false,
+          "roomName": "кухня"
+        },
+        {
+          "id": "2",
+          "isOn": true,
+          "roomName": "кухня"
+        }
+      ],
+      "doors": [
+        {
+          "id": "1",
+          "isOpen": false,
+          "roomName": "кухня"
+        }
+      ],
+      "name": "кухня"
+    },
+    {
+      "lights": [
+        {
+          "id": "3",
+          "isOn": true,
+          "roomName": "ванная"
+        }
+      ],
+      "doors": [
+        {
+          "id": "2",
+          "isOpen": false,
+          "roomName": "ванная"
+        }
+      ],
+      "name": "ванная"
+    },
+    {
+      "lights": [
+        {
+          "id": "4",
+          "isOn": false,
+          "roomName": "спальня"
+        },
+        {
+          "id": "5",
+          "isOn": false,
+          "roomName": "спальня"
+        },
+        {
+          "id": "6",
+          "isOn": false,
+          "roomName": "спальня"
+        }
+      ],
+      "doors": [
+        {
+          "id": "3",
+          "isOpen": true,
+          "roomName": "спальня"
+        }
+      ],
+      "name": "спальня"
+    },
+    {
+      "lights": [
+        {
+          "id": "7",
+          "isOn": false,
+          "roomName": "коридор"
+        },
+        {
+          "id": "8",
+          "isOn": false,
+          "roomName": "коридор"
+        },
+        {
+          "id": "9",
+          "isOn": false,
+          "roomName": "коридор"
+        }
+      ],
+      "doors": [
+        {
+          "id": "4",
+          "isOpen": false,
+          "roomName": "коридор"
+        }
+      ],
+      "name": "коридор"
+    }
+  ]
+}
