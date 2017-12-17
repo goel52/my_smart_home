@@ -40,21 +40,13 @@ public class Room implements Actionable {
     }
 
     @Override
-    public void executeAction(Class objectClass, Action action) {
-        switch (objectClass.getName()) {
-            case DOOR:
-                for (Door door : getDoors()) {
-                    door.executeAction(objectClass, action);
-                }
-                break;
-            case LIGHT:
-                for (Light light : getLights()) {
-                    light.executeAction(objectClass, action);
-                }
-                break;
-            case ROOM:
-                action.execute(this);
-                break;
+    public void executeAction(Action action) {
+        for (Light light : lights) {
+            light.executeAction(action);
         }
+        for (Door door : doors) {
+            door.executeAction(action);
+        }
+        action.execute(this);
     }
 }

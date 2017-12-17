@@ -18,7 +18,7 @@ public class AutoEventHandler implements EventHandler, CommandHandler {
     @Override
     public void handle(SmartHome smartHome, Event event) {
         if (isHandlerActive && isDoorClosedEvent(event)) {
-            smartHome.executeAction(Door.class, object -> {
+            smartHome.executeAction(object -> {
                 Door door = (Door) object;
                 if (door.getId().equals(event.getObjectId())
                         && door.getRoomName().equals("коридор")) {
@@ -29,7 +29,7 @@ public class AutoEventHandler implements EventHandler, CommandHandler {
     }
 
     private void turnOffHomeLights(SmartHome smartHome) {
-        smartHome.executeAction(Light.class, object -> {
+        smartHome.executeAction(object -> {
             Light light = (Light) object;
             light.setOn(false);
             SensorEvent command = new SensorEvent(CommandType.LIGHT_OFF, light.getId());

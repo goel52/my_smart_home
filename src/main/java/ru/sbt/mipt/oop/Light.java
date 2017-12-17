@@ -25,10 +25,8 @@ public class Light implements Actionable {
     }
 
     @Override
-    public void executeAction(Class objectClass, Action action) {
-        if (objectClass.getName().equals(LIGHT)) {
-            action.execute(this);
-        }
+    public void executeAction(Action action) {
+        action.execute(this);
     }
 
     public String getRoomName() {

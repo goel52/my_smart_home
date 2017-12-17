@@ -25,18 +25,10 @@ public class SmartHome implements Actionable {
     }
 
     @Override
-    public void executeAction(Class objectClass, Action action) {
-        switch (objectClass.getName()) {
-            case ROOM:
-            case LIGHT:
-            case DOOR:
-                for (Room room : getRooms()) {
-                    room.executeAction(objectClass, action);
-                }
-                break;
-            case SMART_HOME:
-                action.execute(this);
-                break;
+    public void executeAction( Action action) {
+        for (Room room : rooms) {
+            room.executeAction(action);
         }
+        action.execute(this);
     }
 }

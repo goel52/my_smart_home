@@ -7,7 +7,7 @@ public class LightsEventHandler implements EventHandler {
     @Override
     public void handle(SmartHome smartHome, Event event) {
         if (isLightEvent(event)) {
-            smartHome.executeAction(Light.class, obj -> {
+            smartHome.executeAction(obj -> {
                 Light light = (Light) obj;
                 if (light.getId().equals(event.getObjectId())) {
                     changeLightStatus(event, light);

@@ -11,33 +11,34 @@ package ru.sbt.mipt.oop;
         import static org.junit.Assert.assertEquals;
 
 public class ActionableTest {
+
+
+
     @Test
-    public void testActionableComposite() {
-        List<Light> lights1 = Arrays.asList(new Light("1", false), new Light("2", false));
+    public void testComponentComposite() {
+        List<Light> lights1 = Arrays.asList(new Light("1", false), new Light("2", true));
         List<Door> doors1 = Arrays.asList(new Door("1", false));
-        Room kitchen = new Room(lights1, doors1, "кухня");
+        Room kitchen = new Room(lights1, doors1,"kitchen");
+
         List<Light> lights2 = Arrays.asList(new Light("3", true));
         List<Door> doors2 = Arrays.asList(new Door("2", false));
-        Room bathroom = new Room(lights2, doors2, "ванная");
+        Room bathroom = new Room(lights2, doors2,"bathroom");
+
         SmartHome smartHome = new SmartHome(Arrays.asList(kitchen, bathroom));
+
         Set<Object> unvisitedObjects = new HashSet<>();
         unvisitedObjects.add(smartHome);
         unvisitedObjects.add(kitchen);
         unvisitedObjects.add(bathroom);
         unvisitedObjects.addAll(lights1);
         unvisitedObjects.addAll(lights2);
-        smartHome.executeAction(Door.class, obj -> {
-            unvisitedObjects.remove(obj);
-        });
-        smartHome.executeAction(Light.class, obj -> {
-            unvisitedObjects.remove(obj);
-        });
-        smartHome.executeAction(Room.class, obj -> {
-            unvisitedObjects.remove(obj);
-        });
-        smartHome.executeAction(SmartHome.class, obj -> {
-            unvisitedObjects.remove(obj);
+        unvisitedObjects.addAll(doors1);
+        unvisitedObjects.addAll(doors2);
+
+        smartHome.executeAction( object -> {
+            unvisitedObjects.remove(object);
         });
         assertEquals(0, unvisitedObjects.size());
     }
 }
+

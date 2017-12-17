@@ -17,10 +17,10 @@ public class DoorsEventHandlerTest {
 
         String[] turnedOffLightId = new String[]{"2", "3", "4", "5"};
         LightsEventHandler processor = new LightsEventHandler();
-        for (String lightId : turnedOffLightId) {
-            Event event = new Event(LIGHT_OFF, lightId);
-            processor.handle(smartHome, event);
-        }
+//        for (String lightId : turnedOffLightId) {
+//            Event event = new Event(LIGHT_OFF, lightId);
+//            processor.handle(smartHome, event);
+//        }
 
         for (Room room : rooms) {
             for (Light light : room.getLights()) {
@@ -36,10 +36,10 @@ public class DoorsEventHandlerTest {
 
         String[] turnedOffLightId = new String[]{"2", "3", "4", "5"};
         LightsEventHandler processor = new LightsEventHandler();
-        for (String lightId : turnedOffLightId) {
-            Event event = new Event(LIGHT_ON, lightId);
-            processor.handle(smartHome, event);
-        }
+//        for (String lightId : turnedOffLightId) {
+//            Event event = new Event(LIGHT_ON, lightId);
+//            processor.handle(smartHome, event);
+//        }
 
         for (Room room : rooms) {
             for (Light light : room.getLights()) {

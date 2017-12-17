@@ -7,7 +7,7 @@ public class DoorEventHandler implements EventHandler {
     @Override
     public void handle(SmartHome smartHome, Event event) {
         if (isDoorEvent(event)) {
-            smartHome.executeAction(Door.class, obj -> {
+            smartHome.executeAction(obj -> {
                 Door door = (Door) obj;
                 if (door.getId().equals(event.getObjectId())) {
                     changeDoorStatus(event, door);
