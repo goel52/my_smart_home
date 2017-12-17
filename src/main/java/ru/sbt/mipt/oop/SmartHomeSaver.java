@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class SmartHomeSaver {
-    static void saveSmartHome(SmartHome smartHome) throws IOException {
+    static void save(SmartHome smartHome) throws IOException {
         String jsonString = SmartHomeTransformer.transform(smartHome);
         Path path = Paths.get("src/main/resources/output.json");
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {

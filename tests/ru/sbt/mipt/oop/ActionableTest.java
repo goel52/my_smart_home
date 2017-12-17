@@ -1,44 +1,80 @@
-
 package ru.sbt.mipt.oop;
 
-        import org.junit.Test;
+import org.junit.Test;
 
-        import java.util.Arrays;
-        import java.util.HashSet;
-        import java.util.List;
-        import java.util.Set;
+import java.util.*;
 
-        import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import ru.sbt.mipt.oop.Door;
+import ru.sbt.mipt.oop.Light;
+import ru.sbt.mipt.oop.Room;
+import ru.sbt.mipt.oop.SmartHome;
+
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ActionableTest {
 
 
 
+
+
+
     @Test
-    public void testComponentComposite() {
-        List<Light> lights1 = Arrays.asList(new Light("1", false), new Light("2", true));
-        List<Door> doors1 = Arrays.asList(new Door("1", false));
-        Room kitchen = new Room(lights1, doors1,"kitchen");
+    public void actionableComposite(){
+        List<Light> lights_1 = Arrays.asList(new Light("1", false), new Light("2", true));
+        List<Door> doors_1 = Arrays.asList(new Door("1", false));
+        Room kitchen = new Room(lights_1, doors_1, "kitchen");
 
-        List<Light> lights2 = Arrays.asList(new Light("3", true));
-        List<Door> doors2 = Arrays.asList(new Door("2", false));
-        Room bathroom = new Room(lights2, doors2,"bathroom");
+        List<Light> lights_2 = Arrays.asList(new Light("3", true));
+        List<Door> doors_2 = Arrays.asList(new Door("2", false));
+        Room bathroom = new Room(lights_2, doors_2, "bathroom");
 
-        SmartHome smartHome = new SmartHome(Arrays.asList(kitchen, bathroom));
+        SmartHome home = new SmartHome(Arrays.asList(kitchen, bathroom));
 
-        Set<Object> unvisitedObjects = new HashSet<>();
-        unvisitedObjects.add(smartHome);
-        unvisitedObjects.add(kitchen);
-        unvisitedObjects.add(bathroom);
-        unvisitedObjects.addAll(lights1);
-        unvisitedObjects.addAll(lights2);
-        unvisitedObjects.addAll(doors1);
-        unvisitedObjects.addAll(doors2);
+        Set<Object> unvisited = new HashSet<>();
+        unvisited.add(home);
+        unvisited.add(kitchen);
+        unvisited.add(bathroom);
+        unvisited.addAll(lights_1);
+        unvisited.addAll(lights_2);
+        unvisited.addAll(doors_1);
+        unvisited.addAll(doors_2);
 
-        smartHome.executeAction( object -> {
-            unvisitedObjects.remove(object);
+        home.executeAction(obj ->{
+            unvisited.remove(obj);
         });
-        assertEquals(0, unvisitedObjects.size());
+        System.out.println(unvisited);
+        assertTrue(unvisited.isEmpty());
     }
-}
 
+    @Test
+    public void testForRooms() {
+        SmartHome smartHome = HomeBuilder.create();
+        Collection<Room> rooms = new HashSet<>();
+
+
+        Iterator roomsIterator = smartHome.getRoomsIterator();
+        while (roomsIterator.hasNext()) {
+            Room room = (Room) roomsIterator.next();
+            rooms.add(room);
+        }
+
+        smartHome.executeAction(object -> {
+            if (object instanceof Room) {
+                rooms.remove(object);
+            }
+        });
+        assertEquals(0, rooms.size());
+    }
+
+
+
+
+
+}
